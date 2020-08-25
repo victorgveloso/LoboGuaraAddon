@@ -1,0 +1,11 @@
+{
+    "id": "lobo-guara-addon",
+    "name": "Lobo-guará Séries (BR addon)",
+    "logo": "",
+    "version": "0.1.0",
+    "description": "",
+    "resources": ["stream"],
+    "types": ["series"],
+    "catalogs": [],
+    "idPrefixes": ["tt"]
+}

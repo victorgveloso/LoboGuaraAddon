@@ -1,0 +1,13 @@
+{
+  "name": "stremioaddon",
+  "version": "1.0.0",
+  "description": "stremioaddon",
+  "main": "index.js",
+  "author": "Victor Guerra Veloso <victorgvbh@gmail.com>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "express": "^4.17.1",
+    "stremio-addon-sdk": "^1.6.2"
+  }
+}

@@ -6,7 +6,7 @@ const manifest = require("./manifest.json");
 const addon = new addonBuilder(manifest);
 
 addon.defineStreamHandler(async (args) => {
-  let { imdbId, season, episode } = args.id.split(":");
+  let [ imdbId, season, episode ] = args.id.split(":");
   let { id, name } = await getMeta(imdbId);
   let token = await getToken();
 

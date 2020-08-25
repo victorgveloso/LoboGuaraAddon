@@ -3,7 +3,7 @@
     "name": "Lobo-guará Séries (BR addon)",
     "logo": "",
     "version": "0.1.0",
-    "description": "",
+    "description": "MP4 direct link based addon of dubbed series in brazilian portuguese",
     "resources": ["stream"],
     "types": ["series"],
     "catalogs": [],

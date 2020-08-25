@@ -3,7 +3,8 @@ const app = require("./index.js").helloHttp;
 const server = app.listen(3000);
 new Promise(function (resolve, reject) {
   server.on("listening", function () {
-    const url = `http://127.0.0.1:${server.address().port}/manifest.json`;
+    //https://us-central1-serverless-learning.cloudfunctions.net/helloHttp/stream/series/
+    const url = `https://127.0.0.1:${server.address().port}/manifest.json`;
     console.log("HTTP addon accessible at:", url);
     if (process.argv.includes("--launch")) {
       const base = "https://staging.strem.io#";

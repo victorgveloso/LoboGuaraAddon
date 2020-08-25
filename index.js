@@ -1,21 +1,13 @@
 const serveHTTP = require("./serveHTTP");
 const { addonBuilder, publishToCentral } = require("stremio-addon-sdk");
+const {getMeta, getToken} = require("./stream");
 
 const manifest = require("./manifest.json");
-const addon = new addonBuilder({
-  "id": "my.first.stremio.add-on",
-  "version": "1.0.0",
-  "name": "Hello, World",
-  "description": "My first Stremio add-on",
-  "logo": "https://www.stremio.com/website/stremio-logo-small.png",
-  "resources": ["stream"],
-  "types": ["series"],
-  "catalogs": [],
-});
+const addon = new addonBuilder(manifest);
 
 addon.defineStreamHandler(async (args) => {
-  let serie = args.id.split(":");
-  let { id, name } = await getMeta(serie[ID]);
+  let { imdbId, season, episode } = args.id.split(":");
+  let { id, name } = await getMeta(imdbId);
   let token = await getToken();
 
   let streams = [
@@ -23,9 +15,11 @@ addon.defineStreamHandler(async (args) => {
       id: args.id,
       title: name,
       type: `series`,
-      url: ""//`https://${token}.belugacdn.link/${id}-${serie[SEASON]}-${serie[EPISODE]}.mp4`,
+      url: `https://${token}.belugacdn.link/${id}-${season}-${episode}.mp4`,
     },
   ];
+
+  console.log(streams);
 
   return { streams };
 });

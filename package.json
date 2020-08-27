@@ -8,6 +8,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "express": "^4.17.1",
-    "stremio-addon-sdk": "^1.6.2"
+    "stremio-addon-sdk": "^1.6.2",
+    "url-status-code": "^2.0.0"
   }
 }

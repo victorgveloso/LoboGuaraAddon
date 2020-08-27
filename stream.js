@@ -1,4 +1,5 @@
 var axios = require("axios").default;
+var urlStatusCode = require('url-status-code');
 
 async function getMeta(imdbId, tmdbToken = "e4e9c05e1c65b5dc20e239cae5a88b2c") {
     try {
@@ -8,12 +9,22 @@ async function getMeta(imdbId, tmdbToken = "e4e9c05e1c65b5dc20e239cae5a88b2c") {
             )
         ).data;
     } catch (error) {
-        console.error(`The MovieDB id retrieval failed with http status ${error.response.status}`);
+        console.error(
+            `The MovieDB id retrieval failed with http status ${error.response.status}`
+        );
     }
-    return meta.tv_results[0];
+    let { id, name } = meta.tv_results[0];
+    return {
+        tmdbId: id,
+        name,
+    };
 }
 
-async function getToken() {
+function checkUrl(url) {
+    return urlStatusCode(url).then(code => code === 200).catch((err) => false);
+}
+
+/*async function getToken() {
     try {
         var series = (
             await axios.get(
@@ -21,9 +32,10 @@ async function getToken() {
             )
         ).data;
     } catch (error) {
-        console.error(`Token retrieval failed with http status ${error.response.status}`);
+        console.error(
+            `Token retrieval failed with http status ${error.response.status}`
+        );
     }
-    
 
     for (m of series.data) {
         for (p of m.seasons[0].episodes[0].player) {
@@ -34,6 +46,6 @@ async function getToken() {
             }
         }
     }
-}
+}*/
 
-module.exports = { getMeta, getToken };
+module.exports = { getMeta, checkUrl };

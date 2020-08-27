@@ -24,28 +24,4 @@ function checkUrl(url) {
     return urlStatusCode(url).then(code => code === 200).catch((err) => false);
 }
 
-/*async function getToken() {
-    try {
-        var series = (
-            await axios.get(
-                `https://megahdfilmes.com/wp-json/api/tvshows?what=launch&version=5.4`
-            )
-        ).data;
-    } catch (error) {
-        console.error(
-            `Token retrieval failed with http status ${error.response.status}`
-        );
-    }
-
-    for (m of series.data) {
-        for (p of m.seasons[0].episodes[0].player) {
-            if (p.title === `Mega Player`) {
-                let url = new URL(p.url);
-
-                return url.hostname.split(".")[0];
-            }
-        }
-    }
-}*/
-
 module.exports = { getMeta, checkUrl };

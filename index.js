@@ -19,8 +19,20 @@ addon.defineStreamHandler(async (args) => {
             behaviorHints:{
                 bingeGroup: `${name}-braintv`
             }
+        },
+        {
+            id: `${imdbId}:${season}:${episode}`,
+            title: name,
+            type: `series`,
+            url: `https://hope.azureedge.net/thor/${tmdbId}/${season}/dub/${episode}.mp4`,
+            behaviorHints:{
+                bingeGroup: `${name}-hope`
+            }
         }
-    ].filter((stream) => checkUrl(stream.url));
+    ].filter(({url}) => urlStatusCode(url)
+            .then(code => code === 200)
+            .catch((err) => false))
+      .map(([s,i])=>{ return {...s, title: s.title + ` [Server: ${i}]`}});
 
     console.log(streams);
 

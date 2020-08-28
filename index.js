@@ -13,7 +13,7 @@ addon.defineStreamHandler(async (args) => {
     let streams = [
         {
             id: `${imdbId}:${season}:${episode}`,
-            title: name,
+            title: name + ' [Server 1]',
             type: `series`,
             url: `https://braintv.azureedge.net/tv/${tmdbId}/${season}/dub/${episode}.mp4`,
             behaviorHints:{
@@ -22,7 +22,7 @@ addon.defineStreamHandler(async (args) => {
         },
         {
             id: `${imdbId}:${season}:${episode}`,
-            title: name,
+            title: name + ' [Server 2]',
             type: `series`,
             url: `https://hope.azureedge.net/thor/${tmdbId}/${season}/dub/${episode}.mp4`,
             behaviorHints:{
@@ -30,9 +30,8 @@ addon.defineStreamHandler(async (args) => {
             }
         }
     ].filter(({url}) => urlStatusCode(url)
-            .then(code => code === 200)
-            .catch((err) => false))
-      .map(([s,i])=>{ return {...s, title: s.title + ` [Server: ${i}]`}});
+            .then(code => code == 200)
+            .catch((err) => false));
 
     console.log(streams);
 
